@@ -9,5 +9,4 @@ public interface ServiceRegistry {
 
     public void unregisterService(String name, String uri);
 
-    public String discoverServiceURI(String name);
 }
