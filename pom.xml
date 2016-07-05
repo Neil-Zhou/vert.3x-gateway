@@ -418,7 +418,23 @@
 
 		</plugins>
 	</build>
-	
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+
+
+
+
+	<developers>
+		<developer>
+			<name>Young</name>
+			<email>cywhoyi@gmail.com</email>
+			<organization>MZ</organization>
+		</developer>
+	</developers>
 	<repositories>
         <repository>
             <id>spring-milestones</id>
