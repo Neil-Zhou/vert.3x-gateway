@@ -1,5 +1,5 @@
-  SSSSSS   TTTTTTT   OOOO    NN   N  EEEEEE
+  SSSSSS  TTTTTTTTT  OOOO    NN   N  EEEEEE
  SS          TTT   OO    OO  N N  N  EE
   SSSSSS     TTT   OO    OO  N  N N  EEEEEE
       SS     TTT   OO    OO  N   NN  EE
-  SSSSSS   TTTTTTT   OOOO    N    N  EEEEEE
+  SSSSSS     TTT     OOOO    N    N  EEEEEE
