@@ -1,6 +1,5 @@
 package com.stone.micro.server.vertx;
 
-import com.stone.discovery.ServiceDiscovery;
 import com.stone.registration.ServiceRegistry;
 import io.vertx.core.AbstractVerticle;
 import org.slf4j.Logger;
@@ -20,7 +19,7 @@ public class RegisterServerVerticle extends AbstractVerticle {
         vertx.eventBus().consumer("http", message -> {
             LOGGER.info("Received a message: {}, {}", message.body(), message.headers());
             try {
-                serviceRegistry.registerService("","");
+                serviceRegistry.registerService("", "");
             } catch (Exception e) {
                 LOGGER.error("convert error.", e);
             }
