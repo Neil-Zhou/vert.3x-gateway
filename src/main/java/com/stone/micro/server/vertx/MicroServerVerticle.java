@@ -22,9 +22,6 @@ public class MicroServerVerticle extends AbstractVerticle {
     @Autowired
     private ConfigLoader configLoader;
 
-    @Autowired
-    private UserService userService;
-
     @Override
     public void start() {
         Router router = Router.router(vertx);
@@ -52,6 +49,26 @@ public class MicroServerVerticle extends AbstractVerticle {
         });
 
 
+        router.route("/discovery").handler(
+                req -> {
+                    LOGGER.info("Received a http request");
+                    vertx.eventBus().send("discovery", req.getBodyAsString(), ar -> {
+                        if (ar.succeeded()) {
+                            req.response().end(JSON.toJSONString(ar.result().body()));
+                        }
+                    });
+                });
+
+
+        router.route("/monitor").handler(
+                req -> {
+                    LOGGER.info("Received a http request");
+                    vertx.eventBus().send("monitor", req.getBodyAsString(), ar -> {
+                        if (ar.succeeded()) {
+                            req.response().end(JSON.toJSONString(ar.result().body()));
+                        }
+                    });
+                });
 
         vertx.createHttpServer().requestHandler(router::accept).listen(18081);
         LOGGER.info("Started HttpServer(port=18081).");
