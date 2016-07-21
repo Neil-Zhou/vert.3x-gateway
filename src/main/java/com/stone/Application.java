@@ -2,7 +2,7 @@ package com.stone;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.stone.micro.server.vertx.MicroServerVerticle;
-import com.stone.micro.server.vertx.RouteVerticle;
+import com.stone.micro.server.vertx.HttpServerVerticle;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
 import org.kie.api.KieServices;
@@ -73,7 +73,7 @@ public class Application {
                 .run(args);
 
         final Vertx vertx = Vertx.vertx();
-        vertx.deployVerticle(context.getBean(RouteVerticle.class), new DeploymentOptions().setWorker(true));
+        vertx.deployVerticle(context.getBean(HttpServerVerticle.class), new DeploymentOptions().setWorker(true));
         vertx.deployVerticle(context.getBean(MicroServerVerticle.class));
     }
 }

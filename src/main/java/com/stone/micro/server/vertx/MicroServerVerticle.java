@@ -29,21 +29,11 @@ public class MicroServerVerticle extends AbstractVerticle {
     public void start() {
         Router router = Router.router(vertx);
         router.route().handler(BodyHandler.create());
-        router.route("/sms").handler(
-                req -> {
-                    LOGGER.info("Received a http request,enter into sms server");
-                    //String sms = req.getBodyAsString();
-                    vertx.eventBus().send("sms", req.getBodyAsString(), ar -> {
-                        if (ar.succeeded()) {
-                            req.response().end("hello world");
-                        }
-                    });
-                });
 
         router.route("/").handler(
                 req -> {
                     LOGGER.info("Received a http request");
-                    vertx.eventBus().send("email", req.getBodyAsString(), ar -> {
+                    vertx.eventBus().send("http", req.getBodyAsString(), ar -> {
                         if (ar.succeeded()) {
                             req.response().end(JSON.toJSONString(ar.result().body()));
                         }
@@ -54,7 +44,7 @@ public class MicroServerVerticle extends AbstractVerticle {
         router.route("/register").handler(
                 req -> {
             LOGGER.info("Received a http request");
-            vertx.eventBus().send("email", req.getBodyAsString(), ar -> {
+            vertx.eventBus().send("register", req.getBodyAsString(), ar -> {
                 if (ar.succeeded()) {
                     req.response().end(JSON.toJSONString(ar.result().body()));
                 }

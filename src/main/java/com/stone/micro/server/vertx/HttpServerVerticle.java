@@ -10,23 +10,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * EmailVerticle
- *
- * @author Young
- * @date 2016/2/16 0016
+ * Created by young on 16/7/5.
  */
 @Component
-public class EmailVerticle extends AbstractVerticle {
-    private static final Logger LOGGER = LoggerFactory.getLogger(EmailVerticle.class);
+public class HttpServerVerticle extends AbstractVerticle {
+    private static final Logger LOGGER = LoggerFactory.getLogger(HttpServerVerticle.class);
 
     @Autowired
     private RoutingPassService routingPassService;
     @Override
     public void start() {
-        vertx.eventBus().consumer("email", message -> {
-                LOGGER.info("Received a message: {}, {}", message.body(), message.headers());
+        vertx.eventBus().consumer("http", message -> {
+            LOGGER.info("Received a message: {}, {}", message.body(), message.headers());
             try {
-                Request2Route req=new Request2Route("get","/email");
+                Request2Route req=new Request2Route("get","/route");
                 RoutingInfo routingInfo= routingPassService.getpayPass(req);
                 vertx.createHttpClient().getNow(routingInfo.getPort(), routingInfo.getHost(), routingInfo.getPath(), resp -> {
                     resp.bodyHandler(body -> {
