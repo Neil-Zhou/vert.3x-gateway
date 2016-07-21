@@ -9,6 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Created by young on 16/7/4.
  */
+@Component
 public class ZooKeeperServiceRegistry implements ServiceRegistry{
 
     @Autowired
